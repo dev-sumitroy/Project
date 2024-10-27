@@ -4,8 +4,566 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movies</title>
+    <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    code {
+      font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+        monospace;
+    }
+
+    /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9pbmRleC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxTQUFTO0VBQ1Q7O2NBRVk7RUFDWixtQ0FBbUM7RUFDbkMsa0NBQWtDO0FBQ3BDOztBQUVBO0VBQ0U7YUFDVztBQUNiIiwic291cmNlc0NvbnRlbnQiOlsiYm9keSB7XG4gIG1hcmdpbjogMDtcbiAgZm9udC1mYW1pbHk6IC1hcHBsZS1zeXN0ZW0sIEJsaW5rTWFjU3lzdGVtRm9udCwgJ1NlZ29lIFVJJywgJ1JvYm90bycsICdPeHlnZW4nLFxuICAgICdVYnVudHUnLCAnQ2FudGFyZWxsJywgJ0ZpcmEgU2FucycsICdEcm9pZCBTYW5zJywgJ0hlbHZldGljYSBOZXVlJyxcbiAgICBzYW5zLXNlcmlmO1xuICAtd2Via2l0LWZvbnQtc21vb3RoaW5nOiBhbnRpYWxpYXNlZDtcbiAgLW1vei1vc3gtZm9udC1zbW9vdGhpbmc6IGdyYXlzY2FsZTtcbn1cblxuY29kZSB7XG4gIGZvbnQtZmFtaWx5OiBzb3VyY2UtY29kZS1wcm8sIE1lbmxvLCBNb25hY28sIENvbnNvbGFzLCAnQ291cmllciBOZXcnLFxuICAgIG1vbm9zcGFjZTtcbn1cbiJdLCJzb3VyY2VSb290IjoiIn0= */
+  </style>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: Roboto !important;
+    }
+
+    .App {
+      text-align: center;
+    }
+
+    .roboto-thin {
+      font-family: "Roboto", sans-serif;
+      font-weight: 100;
+      font-style: normal;
+    }
+
+    .roboto-light {
+      font-family: "Roboto", sans-serif;
+      font-weight: 300;
+      font-style: normal;
+    }
+
+    .roboto-regular {
+      font-family: "Roboto", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    .roboto-medium {
+      font-family: "Roboto", sans-serif;
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    .roboto-bold {
+      font-family: "Roboto", sans-serif;
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    .roboto-black {
+      font-family: "Roboto", sans-serif;
+      font-weight: 900;
+      font-style: normal;
+    }
+
+    .roboto-thin-italic {
+      font-family: "Roboto", sans-serif;
+      font-weight: 100;
+      font-style: italic;
+    }
+
+    .roboto-light-italic {
+      font-family: "Roboto", sans-serif;
+      font-weight: 300;
+      font-style: italic;
+    }
+
+    .roboto-regular-italic {
+      font-family: "Roboto", sans-serif;
+      font-weight: 400;
+      font-style: italic;
+    }
+
+    .roboto-medium-italic {
+      font-family: "Roboto", sans-serif;
+      font-weight: 500;
+      font-style: italic;
+    }
+
+    .roboto-bold-italic {
+      font-family: "Roboto", sans-serif;
+      font-weight: 700;
+      font-style: italic;
+    }
+
+    .roboto-black-italic {
+      font-family: "Roboto", sans-serif;
+      font-weight: 900;
+      font-style: italic;
+    }
+
+    /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9BcHAuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsU0FBUztFQUNULFVBQVU7RUFDViw4QkFBOEI7QUFDaEM7O0FBRUE7RUFDRSxrQkFBa0I7QUFDcEI7O0FBRUE7RUFDRSxpQ0FBaUM7RUFDakMsZ0JBQWdCO0VBQ2hCLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLGlDQUFpQztFQUNqQyxnQkFBZ0I7RUFDaEIsa0JBQWtCO0FBQ3BCOztBQUVBO0VBQ0UsaUNBQWlDO0VBQ2pDLGdCQUFnQjtFQUNoQixrQkFBa0I7QUFDcEI7O0FBRUE7RUFDRSxpQ0FBaUM7RUFDakMsZ0JBQWdCO0VBQ2hCLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLGlDQUFpQztFQUNqQyxnQkFBZ0I7RUFDaEIsa0JBQWtCO0FBQ3BCOztBQUVBO0VBQ0UsaUNBQWlDO0VBQ2pDLGdCQUFnQjtFQUNoQixrQkFBa0I7QUFDcEI7O0FBRUE7RUFDRSxpQ0FBaUM7RUFDakMsZ0JBQWdCO0VBQ2hCLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLGlDQUFpQztFQUNqQyxnQkFBZ0I7RUFDaEIsa0JBQWtCO0FBQ3BCOztBQUVBO0VBQ0UsaUNBQWlDO0VBQ2pDLGdCQUFnQjtFQUNoQixrQkFBa0I7QUFDcEI7O0FBRUE7RUFDRSxpQ0FBaUM7RUFDakMsZ0JBQWdCO0VBQ2hCLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLGlDQUFpQztFQUNqQyxnQkFBZ0I7RUFDaEIsa0JBQWtCO0FBQ3BCOztBQUVBO0VBQ0UsaUNBQWlDO0VBQ2pDLGdCQUFnQjtFQUNoQixrQkFBa0I7QUFDcEIiLCJzb3VyY2VzQ29udGVudCI6WyIqIHtcbiAgbWFyZ2luOiAwO1xuICBwYWRkaW5nOiAwO1xuICBmb250LWZhbWlseTogUm9ib3RvICFpbXBvcnRhbnQ7XG59XG5cbi5BcHAge1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG5cbi5yb2JvdG8tdGhpbiB7XG4gIGZvbnQtZmFtaWx5OiBcIlJvYm90b1wiLCBzYW5zLXNlcmlmO1xuICBmb250LXdlaWdodDogMTAwO1xuICBmb250LXN0eWxlOiBub3JtYWw7XG59XG5cbi5yb2JvdG8tbGlnaHQge1xuICBmb250LWZhbWlseTogXCJSb2JvdG9cIiwgc2Fucy1zZXJpZjtcbiAgZm9udC13ZWlnaHQ6IDMwMDtcbiAgZm9udC1zdHlsZTogbm9ybWFsO1xufVxuXG4ucm9ib3RvLXJlZ3VsYXIge1xuICBmb250LWZhbWlseTogXCJSb2JvdG9cIiwgc2Fucy1zZXJpZjtcbiAgZm9udC13ZWlnaHQ6IDQwMDtcbiAgZm9udC1zdHlsZTogbm9ybWFsO1xufVxuXG4ucm9ib3RvLW1lZGl1bSB7XG4gIGZvbnQtZmFtaWx5OiBcIlJvYm90b1wiLCBzYW5zLXNlcmlmO1xuICBmb250LXdlaWdodDogNTAwO1xuICBmb250LXN0eWxlOiBub3JtYWw7XG59XG5cbi5yb2JvdG8tYm9sZCB7XG4gIGZvbnQtZmFtaWx5OiBcIlJvYm90b1wiLCBzYW5zLXNlcmlmO1xuICBmb250LXdlaWdodDogNzAwO1xuICBmb250LXN0eWxlOiBub3JtYWw7XG59XG5cbi5yb2JvdG8tYmxhY2sge1xuICBmb250LWZhbWlseTogXCJSb2JvdG9cIiwgc2Fucy1zZXJpZjtcbiAgZm9udC13ZWlnaHQ6IDkwMDtcbiAgZm9udC1zdHlsZTogbm9ybWFsO1xufVxuXG4ucm9ib3RvLXRoaW4taXRhbGljIHtcbiAgZm9udC1mYW1pbHk6IFwiUm9ib3RvXCIsIHNhbnMtc2VyaWY7XG4gIGZvbnQtd2VpZ2h0OiAxMDA7XG4gIGZvbnQtc3R5bGU6IGl0YWxpYztcbn1cblxuLnJvYm90by1saWdodC1pdGFsaWMge1xuICBmb250LWZhbWlseTogXCJSb2JvdG9cIiwgc2Fucy1zZXJpZjtcbiAgZm9udC13ZWlnaHQ6IDMwMDtcbiAgZm9udC1zdHlsZTogaXRhbGljO1xufVxuXG4ucm9ib3RvLXJlZ3VsYXItaXRhbGljIHtcbiAgZm9udC1mYW1pbHk6IFwiUm9ib3RvXCIsIHNhbnMtc2VyaWY7XG4gIGZvbnQtd2VpZ2h0OiA0MDA7XG4gIGZvbnQtc3R5bGU6IGl0YWxpYztcbn1cblxuLnJvYm90by1tZWRpdW0taXRhbGljIHtcbiAgZm9udC1mYW1pbHk6IFwiUm9ib3RvXCIsIHNhbnMtc2VyaWY7XG4gIGZvbnQtd2VpZ2h0OiA1MDA7XG4gIGZvbnQtc3R5bGU6IGl0YWxpYztcbn1cblxuLnJvYm90by1ib2xkLWl0YWxpYyB7XG4gIGZvbnQtZmFtaWx5OiBcIlJvYm90b1wiLCBzYW5zLXNlcmlmO1xuICBmb250LXdlaWdodDogNzAwO1xuICBmb250LXN0eWxlOiBpdGFsaWM7XG59XG5cbi5yb2JvdG8tYmxhY2staXRhbGljIHtcbiAgZm9udC1mYW1pbHk6IFwiUm9ib3RvXCIsIHNhbnMtc2VyaWY7XG4gIGZvbnQtd2VpZ2h0OiA5MDA7XG4gIGZvbnQtc3R5bGU6IGl0YWxpYztcbn0iXSwic291cmNlUm9vdCI6IiJ9 */
+  </style>
+  <style data-emotion="css-global" data-s="">
+    @-webkit-keyframes mui-auto-fill {
+      from {
+        display: block;
+      }
+    }
+  </style>
+  <style data-emotion="css-global" data-s="">
+    @keyframes mui-auto-fill {
+      from {
+        display: block;
+      }
+    }
+  </style>
+  <style data-emotion="css-global" data-s="">
+    @-webkit-keyframes mui-auto-fill-cancel {
+      from {
+        display: block;
+      }
+    }
+  </style>
+  <style data-emotion="css-global" data-s="">
+    @keyframes mui-auto-fill-cancel {
+      from {
+        display: block;
+      }
+    }
+  </style>
+  <style data-emotion="css" data-s="">
+    .css-1myu18e-MuiAppBar-root {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      width: 100%;
+      box-sizing: border-box;
+      -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+      flex-shrink: 0;
+      position: static;
+      background-color: #1976d2;
+      color: #fff;
+      background-color: rgb(18, 18, 18);
+    }
+  </style>
+  <style data-emotion="css" data-s="">
+    .css-1d7n3mk-MuiPaper-root-MuiAppBar-root {
+      background-color: #fff;
+      color: rgba(0, 0, 0, 0.87);
+      -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+      transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+      box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      width: 100%;
+      box-sizing: border-box;
+      -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+      flex-shrink: 0;
+      position: static;
+      background-color: #1976d2;
+      color: #fff;
+      background-color: rgb(18, 18, 18);
+    }
+  </style>
+  <style data-emotion="css" data-s="">
+    .css-1krb93t-MuiToolbar-root {
+      position: relative;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-align-items: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      padding-left: 16px;
+      padding-right: 16px;
+      min-height: 48px;
+      min-height: 48px;
+      padding: 4px 0;
+      -webkit-align-items: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: safe center;
+      -ms-flex-pack: safe center;
+      -webkit-justify-content: safe center;
+      justify-content: safe center;
+    }
+  </style>
+  <style data-emotion="css" data-s="">
+    @media (min-width:600px) {
+      .css-1krb93t-MuiToolbar-root {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+    }
+  </style>
+  <style data-emotion="css" data-s="">
+    .css-1krb93t-MuiToolbar-root div {
+      padding: 0 16px;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-align-items: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      cursor: pointer;
+    }
+  </style>
+  <style data-emotion="css" data-s="">
+    .css-1krb93t-MuiToolbar-root div:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      padding: 4px 16px;
+    }
+  </style>
+  <style data-emotion="css" data-s="">
+    .css-1krb93t-MuiToolbar-root p {
+      font-family: Roboto, Helvetica, Arial, sans-serif;
+    }
+  </style>
+  <style data-emotion="css" data-s="">
+    .css-0 {}
+  </style>
+  <style data-emotion="css" data-s="">
+    .css-1r3p69m-MuiSvgIcon-root {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      width: 1em;
+      height: 1em;
+      display: inline-block;
+      fill: currentColor;
+      -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+      flex-shrink: 0;
+      -webkit-transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+      transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+      font-size: 1.5rem;
+      height: 24px;
+      width: 24px;
+    }
+  </style>
+  <style data-emotion="css" data-s="">
+    .css-1qp8k1o-MuiTypography-root {
+      margin: 0;
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.5;
+      letter-spacing: 0.00938em;
+      font-size: 14px;
+      font-weight: 600;
+      padding-left: 4px;
+    }
+  </style>
+  <style data-emotion="css" data-s="">
+    .css-1y8b02d-MuiInputBase-root {
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.4375em;
+      letter-spacing: 0.00938em;
+      color: rgba(0, 0, 0, 0.87);
+      box-sizing: border-box;
+      position: relative;
+      cursor: text;
+      display: -webkit-inline-box;
+      display: -webkit-inline-flex;
+      display: -ms-inline-flexbox;
+      display: inline-flex;
+      -webkit-align-items: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      background-color: rgb(255, 255, 255);
+      height: 32px;
+      width: 720px;
+      font-size: 14px;
+      border-radius: 4px;
+      padding: 6px 8px;
+      margin: 0 8px;
+    }
+  </style>
+  <style data-emotion="css" data-s="">
+    .css-1y8b02d-MuiInputBase-root.Mui-disabled {
+      color: rgba(0, 0, 0, 0.38);
+      cursor: default;
+    }
+  </style>
+  <style data-emotion="css" data-s="">
+    .css-1y8b02d-MuiInputBase-root hover {
+      background-color: rgb(0, 0, 0);
+      color: rgb(255, 255, 255);
+    }
+  </style>
+  <style data-emotion="css" data-s="">
+    .css-yz9k0d-MuiInputBase-input {
+      font: inherit;
+      letter-spacing: inherit;
+      color: currentColor;
+      padding: 4px 0 5px;
+      border: 0;
+      box-sizing: content-box;
+      background: none;
+      height: 1.4375em;
+      margin: 0;
+      -webkit-tap-highlight-color: transparent;
+      display: block;
+      min-width: 0;
+      width: 100%;
+      -webkit-animation-name: mui-auto-fill-cancel;
+      animation-name: mui-auto-fill-cancel;
+      -webkit-animation-duration: 10ms;
+      animation-duration: 10ms;
+    }
+  </style>
+  <style data-emotion="css" data-s="">
+    .css-yz9k0d-MuiInputBase-input::-webkit-input-placeholder {
+      color: currentColor;
+      opacity: 0.42;
+      -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+      transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    }
+  </style>
+  <style data-emotion="css" data-s="">
+    .css-yz9k0d-MuiInputBase-input::-moz-placeholder {
+      color: currentColor;
+      opacity: 0.42;
+      -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+      transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    }
+  </style>
+  <style data-emotion="css" data-s="">
+    .css-yz9k0d-MuiInputBase-input:-ms-input-placeholder {
+      color: currentColor;
+      opacity: 0.42;
+      -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+      transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    }
+  </style>
+  <style data-emotion="css" data-s="">
+    .css-yz9k0d-MuiInputBase-input::-ms-input-placeholder {
+      color: currentColor;
+      opacity: 0.42;
+      -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+      transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    }
+  </style>
+  <style data-emotion="css" data-s="">
+    .css-yz9k0d-MuiInputBase-input:focus {
+      outline: 0;
+    }
+  </style>
+  <style data-emotion="css" data-s="">
+    .css-yz9k0d-MuiInputBase-input:invalid {
+      box-shadow: none;
+    }
+  </style>
+  <style data-emotion="css" data-s="">
+    .css-yz9k0d-MuiInputBase-input::-webkit-search-decoration {
+      -webkit-appearance: none;
+    }
+  </style>
+  <style data-emotion="css" data-s="">
+    label[data-shrink=false]+.MuiInputBase-formControl .css-yz9k0d-MuiInputBase-input {}
+  </style>
+  <style data-emotion="css" data-s="">
+    label[data-shrink=false]+.MuiInputBase-formControl .css-yz9k0d-MuiInputBase-input::-webkit-input-placeholder {
+      opacity: 0 !important;
+    }
+  </style>
+  <style data-emotion="css" data-s="">
+    label[data-shrink=false]+.MuiInputBase-formControl .css-yz9k0d-MuiInputBase-input::-moz-placeholder {
+      opacity: 0 !important;
+    }
+  </style>
+  <style data-emotion="css" data-s="">
+    label[data-shrink=false]+.MuiInputBase-formControl .css-yz9k0d-MuiInputBase-input:-ms-input-placeholder {
+      opacity: 0 !important;
+    }
+  </style>
+  <style data-emotion="css" data-s="">
+    label[data-shrink=false]+.MuiInputBase-formControl .css-yz9k0d-MuiInputBase-input::-ms-input-placeholder {
+      opacity: 0 !important;
+    }
+  </style>
+  <style data-emotion="css" data-s="">
+    label[data-shrink=false]+.MuiInputBase-formControl .css-yz9k0d-MuiInputBase-input:focus::-webkit-input-placeholder {
+      opacity: 0.42;
+    }
+  </style>
+  <style data-emotion="css" data-s="">
+    label[data-shrink=false]+.MuiInputBase-formControl .css-yz9k0d-MuiInputBase-input:focus::-moz-placeholder {
+      opacity: 0.42;
+    }
+  </style>
+  <style data-emotion="css" data-s="">
+    label[data-shrink=false]+.MuiInputBase-formControl .css-yz9k0d-MuiInputBase-input:focus:-ms-input-placeholder {
+      opacity: 0.42;
+    }
+  </style>
+  <style data-emotion="css" data-s="">
+    label[data-shrink=false]+.MuiInputBase-formControl .css-yz9k0d-MuiInputBase-input:focus::-ms-input-placeholder {
+      opacity: 0.42;
+    }
+  </style>
+  <style data-emotion="css" data-s="">
+    .css-yz9k0d-MuiInputBase-input.Mui-disabled {
+      opacity: 1;
+      -webkit-text-fill-color: rgba(0, 0, 0, 0.38);
+    }
+  </style>
+  <style data-emotion="css" data-s="">
+    .css-yz9k0d-MuiInputBase-input:-webkit-autofill {
+      -webkit-animation-duration: 5000s;
+      animation-duration: 5000s;
+      -webkit-animation-name: mui-auto-fill;
+      animation-name: mui-auto-fill;
+    }
+  </style>
+  <style data-emotion="css" data-s="">
+    .css-1wuptgd {
+      width: 52px;
+      height: 14px;
+      cursor: pointer;
+      padding: 0 16px;
+      -webkit-align-items: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+    }
+  </style>
+  <style data-emotion="css" data-s="">
+    .css-1wuptgd:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      padding: 9px 16px;
+    }
+  </style>
+  <style data-emotion="css" data-s="">
+    .css-rhccoy-MuiTypography-root {
+      margin: 0;
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.5;
+      letter-spacing: 0.00938em;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 0 16px;
+      text-wrap: nowrap;
+    }
+  </style>
+  <style data-emotion="css" data-s="">
+    .css-rhccoy-MuiTypography-root:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      padding: 5.5px 16px;
+    }
+  </style>
+  <style data-emotion="css" data-s="">
+    .css-3qh8jd {
+      padding-right: 4px !important;
+    }
+  </style>
+  <style data-emotion="css" data-s="">
+    .css-14mjqql-MuiTypography-root {
+      margin: 0;
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.5;
+      letter-spacing: 0.00938em;
+      font-size: 14px;
+      font-weight: 600;
+    }
+  </style>
 </head>
 <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root">
+    <div class="App">
+      <nav class="App-header">
+        <header
+          class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionStatic css-1d7n3mk-MuiPaper-root-MuiAppBar-root">
+          <div class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-dense css-1krb93t-MuiToolbar-root"><img
+              src="./IMDb_ Clone_files/IMDb_Logo.39ec2f8aad08ab8991e2.png" alt="IMDb logo"
+              style="display: flex; width: 64px; height: 32px; cursor: pointer; margin-right: 8px;">
+            <div class="MuiBox-root css-0"><svg
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1r3p69m-MuiSvgIcon-root" focusable="false"
+                aria-hidden="true" viewBox="0 0 24 24" data-testid="MenuIcon">
+                <path d="M3 18h18v-2H3zm0-5h18v-2H3zm0-7v2h18V6z"></path>
+              </svg>
+              <p class="MuiTypography-root MuiTypography-body1 css-1qp8k1o-MuiTypography-root">Menu</p>
+            </div>
+            <div class="MuiInputBase-root MuiInputBase-colorPrimary css-1y8b02d-MuiInputBase-root"><input
+                placeholder="Search IMDb: Please do not search. This is a Dummy Search Bar... Cheers!!!" type="text"
+                class="MuiInputBase-input css-yz9k0d-MuiInputBase-input" value=""></div><img
+              src="./IMDb_ Clone_files/IMDbPro_Logo.f7ec356dd17a79f3bd3a.png" alt="IMDbPro logo"
+              class="css-1wuptgd"><span
+              style="height: 30px; border: 1px solid rgba(255, 255, 255, 0.1); margin: 0px 8px;"></span>
+            <div class="MuiBox-root css-0"><svg stroke="currentColor" fill="currentColor" stroke-width="0"
+                viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"
+                style="height: 24px; width: 24px;">
+                <path d="M17 2H7a2 2 0 0 0-2 2v18l7-4.848L19 22V4a2 2 0 0 0-2-2zm-1 9h-3v3h-2v-3H8V9h3V6h2v3h3v2z">
+                </path>
+              </svg>
+              <p class="MuiTypography-root MuiTypography-body1 css-1qp8k1o-MuiTypography-root">Watchlist</p>
+            </div>
+            <p class="MuiTypography-root MuiTypography-body1 css-rhccoy-MuiTypography-root">Sign In</p>
+            <div class="MuiBox-root css-3qh8jd">
+              <p class="MuiTypography-root MuiTypography-body1 css-14mjqql-MuiTypography-root">EN</p><svg
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1r3p69m-MuiSvgIcon-root" focusable="false"
+                aria-hidden="true" viewBox="0 0 24 24" data-testid="ArrowDropDownRoundedIcon">
+                <path
+                  d="m8.71 11.71 2.59 2.59c.39.39 1.02.39 1.41 0l2.59-2.59c.63-.63.18-1.71-.71-1.71H9.41c-.89 0-1.33 1.08-.7 1.71">
+                </path>
+              </svg>
+            </div>
+          </div>
+        </header>
+      </nav>
+      <div>
+        <h1>Whatsup Sumit</h1>
+        <p>lorem</p>
+      </div>
+    </div>
+  </div>
+  <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+
+    
     <!-- Place <div> tag where you want the feed to appear -->
 <div id="curator-feed-default-feed-layout"><a href="https://curator.io" target="_blank" class="crt-logo crt-tag">Powered by Curator.io</a></div>
 
